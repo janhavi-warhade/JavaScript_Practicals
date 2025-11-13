@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Traversal and Manipulation - To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f6fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      background-color: #4A6CF7;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3651c9;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+    li {
+      background: #f8fafc;
+      padding: 8px;
+      margin-bottom: 6px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-small {
+      background: #4A6CF7;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .btn-small.delete {
+      background: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>To-Do List (DOM Manipulation)</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter new task">
+    <button onclick="addTask()">Add Task</button>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const taskText = input.value.trim();
+
+      if (taskText === '') {
+        alert('Please enter a task');
+        return;
+      }
+
+      // createElement and appendChild
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span>${taskText}</span>
+        <div>
+          <button class='btn-small' onclick='editTask(this)'>Edit</button>
+          <button class='btn-small delete' onclick='removeTask(this)'>Delete</button>
+        </div>
+      `;
+
+      document.getElementById('taskList').appendChild(li);
+      input.value = '';
+    }
+
+    function editTask(button) {
+      const li = button.closest('li'); // querySelector example
+      const span = li.querySelector('span');
+      const newText = prompt('Edit your task:', span.textContent);
+      if (newText !== null && newText.trim() !== '') {
+        span.textContent = newText;
+      }
+    }
+
+    function removeTask(button) {
+      const li = button.parentElement.parentElement;
+      li.remove();
+    }
+  </script>
+</body>
+</html>
