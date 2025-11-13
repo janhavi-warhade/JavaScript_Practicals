@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gym Admission Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f7;
+    }
+
+    h2 {
+      text-align: center;
+      color: #222;
+    }
+
+    form {
+      width: 420px;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 30px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    input:focus {
+      background-color: #e8f0fe;
+      outline: none;
+      border-color: #007BFF;
+    }
+
+    .required {
+      color: red;
+    }
+
+    .checkbox-label {
+      font-weight: normal;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-top: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .note {
+      color: red;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Gym Admission Registration Form</h2>
+
+  <form id="gymForm">
+    <p class="note">* All fields are mandatory</p>
+
+    <label>Full Name <span class="required">*</span></label>
+    <input type="text" id="fullname" placeholder="Enter your name">
+
+    <label>Email <span class="required">*</span></label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <label>Age <span class="required">*</span></label>
+    <input type="number" id="age" min="15" max="80" placeholder="Enter your age">
+
+    <label>Gender <span class="required">*</span></label>
+    <select id="gender">
+      <option value="">Select</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label>Membership Type <span class="required">*</span></label>
+    <select id="membership">
+      <option value="">Select Plan</option>
+      <option value="Monthly">Monthly</option>
+      <option value="Quarterly">Quarterly</option>
+      <option value="Yearly">Yearly</option>
+    </select>
+
+    <label>Password <span class="required">*</span></label>
+    <input type="password" id="password" placeholder="Create a password">
+
+    <label>Confirm Password <span class="required">*</span></label>
+    <input type="password" id="confirmPass" placeholder="Re-enter password">
+
+    <input type="checkbox" id="terms">
+    <label class="checkbox-label" for="terms">I agree to the gym rules & safety terms.</label><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    // Focus and blur highlight
+    const inputs = document.querySelectorAll("input, select");
+    inputs.forEach(el => {
+      el.addEventListener("focus", () => el.style.backgroundColor = "#e8f0fe");
+      el.addEventListener("blur", () => el.style.backgroundColor = "white");
+    });
+
+    // Validate email on change
+    document.getElementById("email").addEventListener("change", function() {
+      const email = this.value;
+      if (email && !email.includes("@")) {
+        alert("Invalid email format! Please include '@'.");
+        this.focus();
+      }
+    });
+
+    // Form submit validation
+    document.getElementById("gymForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+      const membership = document.getElementById("membership").value;
+      const pass = document.getElementById("password").value;
+      const confirmPass = document.getElementById("confirmPass").value;
+      const terms = document.getElementById("terms").checked;
+
+      if (!name || !email || !age || !gender || !membership || !pass || !confirmPass) {
+        alert("Please fill all required fields!");
+        return;
+      }
+
+      if (age < 15 || age > 80) {
+        alert("Age must be between 15 and 80 years!");
+        return;
+      }
+
+      if (pass !== confirmPass) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      if (!terms) {
+        alert("Please accept the terms & conditions.");
+        return;
+      }
+
+      alert("🎉 Registration Successful! Welcome to the Gym!");
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
