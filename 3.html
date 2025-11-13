@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Student Grading System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+
+    .card {
+      border: 1px solid #aaa;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      width: 220px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .highlight {
+      border: 2px solid green;
+      box-shadow: 0 0 12px limegreen;
+      background: #f0fff0; 
+    }
+
+    button {
+      padding: 10px 18px;
+      margin-top: 15px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎓 Student Grading System</h2>
+
+  
+  <div class="card" id="cardA">
+    <h3>Krutik</h3>ID: 131<br>
+    Marks: <input id="marksA" type="number" min="0" max="100" value="50"><br>
+    <p id="outA"></p>
+  </div>
+
+  
+  <div class="card" id="cardB">
+    <h3>Janhavi</h3>ID: 132<br>
+    Marks: <input id="marksB" type="number" min="0" max="100" value="50"><br>
+    <p id="outB"></p>
+  </div>
+
+  
+  <div class="card" id="cardC">
+    <h3>Kunjal</h3>ID: 133<br>
+    Marks: <input id="marksC" type="number" min="0" max="100" value="50"><br>
+    <p id="outC"></p>
+  </div>
+
+  <br>
+  <button onclick="submitGrades()">Check Grades</button>
+
+  <footer id="foot"></footer>
+
+<script>
+  
+  function calcGrade(letter) {
+    var marks = Number(document.getElementById("marks" + letter).value);
+    var grade = "Fail";
+
+    if (marks >= 50 && marks <= 65) {
+      grade = "C";
+    } else if (marks >= 66 && marks <= 80) {
+      grade = "B";
+    } else if (marks >= 81 && marks <= 90) {
+      grade = "A";
+    } else if (marks > 90 && marks <= 100) {
+      grade = "A+";
+    }
+
+    document.getElementById("out" + letter).innerHTML =
+      "Marks: " + marks + "<br>Grade: " + grade;
+
+    return {marks: marks, grade: grade};
+  }
+
+
+  function submitGrades() {
+    var studentA = calcGrade('A');
+    var studentB = calcGrade('B');
+    var studentC = calcGrade('C');
+
+    document.getElementById("cardA").classList.remove("highlight");
+    document.getElementById("cardB").classList.remove("highlight");
+    document.getElementById("cardC").classList.remove("highlight");
+
+    var maxMarks = Math.max(studentA.marks, studentB.marks, studentC.marks);
+
+    if (studentA.marks === maxMarks) document.getElementById("cardA").classList.add("highlight");
+    if (studentB.marks === maxMarks) document.getElementById("cardB").classList.add("highlight");
+    if (studentC.marks === maxMarks) document.getElementById("cardC").classList.add("highlight");
+  }
+
+  
+  document.getElementById("foot").innerHTML =
+    "<hr>By: Anushka Gahukar | " + new Date().toLocaleString();
+</script>
+</body>
+</html>
