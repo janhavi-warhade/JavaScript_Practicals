@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>String Operations Using JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      margin: 30px;
+    }
+    h1, h2 {
+      color: #2b5db2;
+    }
+    .box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+    }
+    input, textarea, button {
+      margin-top: 8px;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 100%;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #2b5db2;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #1e4390;
+    }
+    pre {
+      background-color: #f7f9fb;
+      padding: 10px;
+      border-radius: 6px;
+      border-left: 4px solid #2b5db2;
+      white-space: pre-wrap;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>String Operations Using JavaScript</h1>
+
+  <div class="box">
+    <h2>1. Basic String Methods</h2>
+    <p><b>Example String:</b> <i>JavaScript is fun to learn!</i></p>
+    <pre id="basicOutput"></pre>
+  </div>
+
+  <div class="box">
+    <h2>2. Reverse a String</h2>
+    <label>Enter a String:</label>
+    <input type="text" id="reverseInput" placeholder="Type something...">
+    <button onclick="reverseString()">Reverse It</button>
+    <pre id="reverseOutput"></pre>
+  </div>
+
+  <div class="box">
+    <h2>3. Count Number of Vowels</h2>
+    <label>Enter a Paragraph:</label>
+    <textarea id="paraInput" rows="5" placeholder="Enter your paragraph here..."></textarea>
+    <button onclick="countVowels()">Count Vowels</button>
+    <pre id="vowelOutput"></pre>
+  </div>
+
+  <script>
+    // --- Basic String Operations ---
+    function basicOperations() {
+      let str = "JavaScript is fun to learn!";
+      let result = "";
+      result += "Original String: " + str + "\n";
+      result += "Substring (0,10): " + str.substring(0, 10) + "\n";
+      result += "Index of 'fun': " + str.indexOf("fun") + "\n";
+      result += "Split into words: " + str.split(" ").join(", ") + "\n";
+      result += "After Replace: " + str.replace("fun", "awesome") + "\n";
+      document.getElementById("basicOutput").textContent = result;
+    }
+
+    // --- Case Study 1: Reverse a String ---
+    function reverseString() {
+      let text = document.getElementById("reverseInput").value;
+      if (text.trim() === "") {
+        document.getElementById("reverseOutput").textContent = "⚠ Please enter a string.";
+        return;
+      }
+      let reversed = text.split("").reverse().join("");
+      document.getElementById("reverseOutput").textContent = "Reversed String: " + reversed;
+    }
+
+    // --- Case Study 2: Count the Number of Vowels in a Paragraph ---
+    function countVowels() {
+      let para = document.getElementById("paraInput").value;
+      if (para.trim() === "") {
+        document.getElementById("vowelOutput").textContent = "⚠ Please enter a paragraph.";
+        return;
+      }
+      let vowels = para.match(/[aeiouAEIOU]/g);
+      let count = vowels ? vowels.length : 0;
+      document.getElementById("vowelOutput").textContent = "Total Number of Vowels: " + count;
+    }
+
+    // Run basic operations on load
+    basicOperations();
+  </script>
+
+</body>
+</html>
