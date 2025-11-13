@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shopping Billing Calculator with Arrays</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      background: #1885ce;
+      color: white;
+      padding: 15px;
+      font-size: 22px;
+    }
+    .shop {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px;
+    }
+    .item {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      width: 180px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .item img {
+      width: 80px;
+      height: 80px;
+    }
+    .item input {
+      width: 60px;
+      margin-top: 8px;
+      padding: 5px;
+      text-align: center;
+    }
+    .controls {
+      text-align: center;
+      margin: 20px;
+    }
+    button {
+      padding: 8px 15px;
+      margin-left: 10px;
+      background: #f12626;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .result {
+      background: white;
+      width: 450px;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    🛒 Online Shopping - Billing Calculator (with Arrays & Objects)
+  </header>
+
+  <div class="shop">
+    <div class="item">
+      <img src="https://abrosshoes.com/cdn/shop/files/WhiteMintArizona_0000_000A8391.jpg?v=1756296615&width=2048" alt="Shoes">
+      <h3>Shoes</h3>
+      <p>₹1500</p>
+      <input type="number" id="shoes" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://bonorganik.in/cdn/shop/files/MNavy011.jpg?v=1721891466" alt="T-Shirt">
+      <h3>T-Shirt</h3>
+      <p>₹500</p>
+      <input type="number" id="tshirt" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx_cTYWcoDRQ-tAPYzvDr7OvkwmSywgZVdHw&s" alt="Watch">
+      <h3>Watch</h3>
+      <p>₹2000</p>
+      <input type="number" id="watch" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://safaribags.com/cdn/shop/files/2_3d6acc65-50a9-4d45-b83c-31bb315d7b05_1024x.jpg?v=1707731912" alt="Bag">
+      <h3>Bag</h3>
+      <p>₹1200</p>
+      <input type="number" id="bag" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://darlingretail.com/cdn/shop/files/e4c2a892afe052018e56d1412d81a13e_png_600x600_crop_center.webp?v=1753531730" alt="Mobile">
+      <h3>Mobile</h3>
+      <p>₹25000</p>
+      <input type="number" id="mobile" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwOC6_XLG0gr4PCKqb1CzYd1SzD6yb39CkA&s" alt="Laptop">
+      <h3>Laptop</h3>
+      <p>₹55000</p>
+      <input type="number" id="laptop" placeholder="Qty">
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="calculateBill()">Calculate Bill</button>
+  </div>
+
+  <div id="output" class="result">
+    <h3>Bill will be shown here</h3>
+  </div>
+
+<script>
+    
+    const prices = {
+      shoes: 1500,
+      tshirt: 500,
+      watch: 2000,
+      bag: 1200,
+      mobile: 25000,
+      laptop: 55000
+    };
+
+    function calculateBill() {
+      let cart = [];  
+      for (let item in prices) {
+        let qty = Number(document.getElementById(item).value) || 0;
+        if (qty > 0) {
+          cart.push({ name: item, price: prices[item], qty: qty }); 
+        }
+      }
+
+      
+      if (cart.length === 0) {
+        document.getElementById("output").innerHTML = "<h3>Please add some items 🛍</h3>";
+        return;
+      }
+
+      
+      let itemTotals = cart.map(product => product.price * product.qty); 
+      let subtotal = itemTotals.reduce((sum, val) => sum + val, 0); 
+      cart.forEach(p => console.log(p.name, p.qty)); 
+
+      
+      let expensive = cart.filter(p => p.price > 5000); 
+
+      
+      let maxItem = cart.reduce((a, b) => (a.price*a.qty) > (b.price*b.qty) ? a : b);
+      let minItem = cart.reduce((a, b) => (a.price*a.qty) < (b.price*b.qty) ? a : b);
+
+      
+      let discount = 0;
+      if (subtotal >= 40000) discount = 0.1 * subtotal; 
+
+      let finalBill = subtotal - discount;
+
+      
+      let numbers = [10, 20, 5, 40, 100];
+      numbers.push(200);   
+      numbers.pop();       
+      numbers.unshift(1);  
+      numbers.shift();     
+      let sliced = numbers.slice(1, 3); 
+      numbers.splice(2, 1, 99);         
+
+      let maxNum = Math.max(...numbers);
+      let minNum = Math.min(...numbers);
+
+      
+      document.getElementById("output").innerHTML = `
+        <h3>🧾 Bill Summary</h3>
+        <ul style="text-align:left;">
+         ${cart.map(p => `<li>${p.name.toUpperCase()} - ${p.qty} × ₹${p.price} = ₹${p.price*p.qty}</li>`).join("")}
+        </ul>
+        <p>Subtotal: ₹${subtotal}</p>
+        <p style="color:blue">Maximum Purchase: ${maxItem.name.toUpperCase()} (₹${maxItem.price*maxItem.qty})</p>
+        <p style="color:orange">Minimum Purchase: ${minItem.name.toUpperCase()} (₹${minItem.price*minItem.qty})</p>
+        <p style="color:red">Expensive Items ( > ₹5000 ): ${expensive.map(e => e.name.toUpperCase()).join(", ") || "None"}</p>
+        <p>Discount: ₹${discount}</p>
+        <h3 style="color:green">Final Bill: ₹${finalBill}</h3>
+        <hr>
+        <h4>📊 Array of Numbers Example</h4>
+        <p>Numbers: ${numbers.join(", ")}</p>
+        <p>Sliced: ${sliced.join(", ")}</p>
+        <p>Max: ${maxNum}, Min: ${minNum}</p>
+      `;
+    }
+</script>
+</body>
+</html>
