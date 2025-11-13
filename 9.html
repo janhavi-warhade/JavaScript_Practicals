@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Theme Switcher using Web Storage</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background-color 0.4s, color 0.4s;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🌗 Theme Switcher (Light / Dark Mode)</h2>
+  <button onclick="toggleTheme()">Toggle Theme</button>
+
+  <script>
+    // Function to toggle between Light and Dark themes
+    function toggleTheme() {
+      let currentTheme = document.body.dataset.theme;
+
+      if (currentTheme === "dark") {
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "black";
+        document.body.dataset.theme = "light";
+        localStorage.setItem("theme", "light");
+      } else {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        document.body.dataset.theme = "dark";
+        localStorage.setItem("theme", "dark");
+      }
+    }
+
+    // Apply saved theme on page load
+    window.onload = function () {
+      let savedTheme = localStorage.getItem("theme");
+
+      if (savedTheme === "dark") {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        document.body.dataset.theme = "dark";
+      } else {
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "black";
+        document.body.dataset.theme = "light";
+      }
+    };
+  </script>
+
+</body>
+</html>
