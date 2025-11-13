@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Info</title>
+  <style>
+    body { font-family: Arial; background: #f9f9f9; margin: 0; }
+    header { background: #004080; color: white; padding: 15px; text-align: center; }
+    nav { background: #0066cc; padding: 10px; text-align: center; }
+    nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    main { padding: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SIT Nagpur - Student Information</h1>
+  </header>
+
+  <nav>
+    <a href="1c.html">Home</a>
+    <a href="1b.html">Student Info</a>
+    <a href="1a.html">Student Registration</a>
+  </nav>
+
+  <main>
+    <h2>Student Details</h2>
+    <table>
+      <tr><th>Roll No</th><th>Name</th><th>Branch</th></tr>
+      <tr><td>101</td><td>Krutik</td><td>CSE</td></tr>
+      <tr><td>102</td><td>Janhavi</td><td>ECE</td></tr>
+      <tr><td>103</td><td>Kunjal</td><td>IT</td></tr>
+      <tr><td>104</td><td>Shruti</td><td>CSE</td></tr>
+      <tr><td>105</td><td>Ojas</td><td>AIML</td></tr>
+      <tr><td>106</td><td>Arjun</td><td>ETC</td></tr>
+      <tr><td>107</td><td>Anshul</td><td>IT</td></tr>
+      <tr><td>108</td><td>Bhumika</td><td>CIVIL</td></tr>
+      <tr><td>109</td><td>Advik</td><td>MECH</td></tr>
+      <tr><td>110</td><td>Urvashi</td><td>ECE</td></tr>
+    </table>
+  </main>
+
+  <script>
+    console.log("Student Info page loaded.");
+    console.table([{Roll:101, Name:"Anushka"}, {Roll:102, Name:"Reem"}]);
+  </script>
+</body>
+</html>
