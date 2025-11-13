@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SIT Nagpur - Department</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+    }
+    header {
+      background: #004080;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      background: #0066cc;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body onload="showWelcome()">
+  <header>
+    <h1>SIT Nagpur - Computer Science Department</h1>
+  </header>
+
+  <nav>
+    <a href="1c.html">Home</a>
+    <a href="1b.html">Student Info</a>
+    <a href="1a.html">Student Registration</a>
+  </nav>
+
+  <main>
+    <h2>About the Department</h2>
+    <p>Welcome to the Computer Science Department of SIT Nagpur. Explore student details and register online!</p>
+    <img src="https://sitnagpur.edu.in/images/infra2.webp">
+  </main>
+
+  <script>
+    
+    function showWelcome() {
+      alert("Welcome to SIT Nagpur");
+    }
+
+    console.log("This is SIT Nagpur Department Page");
+    console.error("Demo Error: No issues, just for learning!");
+    console.table([{Name:"Anushka", Roll:101}, {Name:"Reem", Roll:102}]);
+    console.trace("Trace Example");
+  </script>
+</body>
+</html>
