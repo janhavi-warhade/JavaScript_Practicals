@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 30px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+
+    input[type="text"], input[type="number"] {
+      width: 90%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #addItem {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #addItem:hover {
+      background-color: #2980b9;
+    }
+
+    #total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #printBtn {
+      background-color: green;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #printBtn:hover {
+      background-color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Invoice Generator</h2>
+    <table id="invoiceTable">
+      <tr>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Price (₹)</th>
+        <th>Total (₹)</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="Enter item"></td>
+        <td><input type="number" value="1" min="1" class="qty"></td>
+        <td><input type="number" value="0" min="0" class="price"></td>
+        <td class="itemTotal">0</td>
+        <td><button onclick="deleteRow(this)">❌</button></td>
+      </tr>
+    </table>
+
+    <button id="addItem" onclick="addRow()">➕ Add Item</button>
+
+    <div id="total">Grand Total: ₹0</div>
+
+    <br>
+    <button id="printBtn" onclick="window.print()">🖨️ Print Invoice</button>
+  </div>
+
+  <script>
+    function addRow() {
+      let table = document.getElementById("invoiceTable");
+      let newRow = table.insertRow(-1);
+
+      newRow.innerHTML = `
+        <td><input type="text" placeholder="Enter item"></td>
+        <td><input type="number" value="1" min="1" class="qty"></td>
+        <td><input type="number" value="0" min="0" class="price"></td>
+        <td class="itemTotal">0</td>
+        <td><button onclick="deleteRow(this)">❌</button></td>
+      `;
+
+      updateEvents();
+    }
+
+    function deleteRow(button) {
+      button.parentElement.parentElement.remove();
+      calculateTotal();
+    }
+
+    function updateEvents() {
+      document.querySelectorAll(".qty, .price").forEach(input => {
+        input.addEventListener("input", calculateTotal);
+      });
+    }
+
+    function calculateTotal() {
+      let rows = document.querySelectorAll("#invoiceTable tr");
+      let grandTotal = 0;
+
+      rows.forEach((row, index) => {
+        if (index === 0) return; // skip header row
+        let qty = row.querySelector(".qty") ? parseFloat(row.querySelector(".qty").value) || 0 : 0;
+        let price = row.querySelector(".price") ? parseFloat(row.querySelector(".price").value) || 0 : 0;
+        let total = qty * price;
+        if (row.querySelector(".itemTotal")) {
+          row.querySelector(".itemTotal").textContent = total.toFixed(2);
+        }
+        grandTotal += total;
+      });
+
+      document.getElementById("total").textContent = "Grand Total: ₹" + grandTotal.toFixed(2);
+    }
+
+    // initialize calculation
+    updateEvents();
+  </script>
+
+</body>
+</html>
