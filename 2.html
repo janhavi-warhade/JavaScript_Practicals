@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shopping Billing Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      background: #4081e4;
+      color: white;
+      padding: 15px;
+      font-size: 22px;
+    }
+    .shop {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px;
+    }
+    .item {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      width: 180px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .item img {
+      width: 80px;
+      height: 80px;
+    }
+    .item input {
+      width: 60px;
+      margin-top: 8px;
+      padding: 5px;
+      text-align: center;
+    }
+    .controls {
+      text-align: center;
+      margin: 20px;
+    }
+    button {
+      padding: 8px 15px;
+      margin-left: 10px;
+      background: #f04242;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .result {
+      background: white;
+      width: 320px;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    🛒 Online Shopping - Billing Calculator
+  </header>
+
+  <div class="shop">
+    <div class="item">
+      <img src="https://abrosshoes.com/cdn/shop/files/WhiteMintArizona_0000_000A8391.jpg?v=1756296615&width=2048" alt="Shoes">
+      <h3>Shoes</h3>
+      <p>₹1500</p>
+      <input type="number" id="shoes" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://bonorganik.in/cdn/shop/files/MNavy011.jpg?v=1721891466" alt="T-Shirt">
+      <h3>T-Shirt</h3>
+      <p>₹500</p>
+      <input type="number" id="tshirt" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx_cTYWcoDRQ-tAPYzvDr7OvkwmSywgZVdHw&s" alt="Watch">
+      <h3>Watch</h3>
+      <p>₹2000</p>
+      <input type="number" id="watch" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://safaribags.com/cdn/shop/files/2_3d6acc65-50a9-4d45-b83c-31bb315d7b05_1024x.jpg?v=1707731912" alt="Bag">
+      <h3>Bag</h3>
+      <p>₹1200</p>
+      <input type="number" id="bag" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://darlingretail.com/cdn/shop/files/e4c2a892afe052018e56d1412d81a13e_png_600x600_crop_center.webp?v=1753531730" alt="Mobile">
+      <h3>Mobile</h3>
+      <p>₹25000</p>
+      <input type="number" id="mobile" placeholder="Qty">
+    </div>
+    <div class="item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwOC6_XLG0gr4PCKqb1CzYd1SzD6yb39CkA&s" alt="Laptop">
+      <h3>Laptop</h3>
+      <p>₹55000</p>
+      <input type="number" id="laptop" placeholder="Qty">
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="calculateBill()">Calculate Bill</button>
+  </div>
+
+  <div id="output" class="result">
+    <h3>Bill will be shown here</h3>
+  </div>
+
+  <script>
+    const prices = {
+      shoes: 1500,
+      tshirt: 500,
+      watch: 2000,
+      bag: 1200,
+      mobile: 25000,
+      laptop: 55000
+    };
+
+    function calculateBill() {
+      let subtotal = 0;
+      let totalItems = 0;
+      let breakdown = [];
+
+      for (let item in prices) {
+        let qty = Number(document.getElementById(item).value) || 0;
+        if (qty > 0) {
+          let itemTotal = qty * prices[item];
+          subtotal += itemTotal;
+          totalItems += qty;
+          breakdown.push(`₹${itemTotal}`);
+        }
+      }
+
+      let finalBill = subtotal;
+
+      document.getElementById("output").innerHTML = `
+        <h3>🧾 Bill Summary</h3>
+        <p>Total Items: ${totalItems}</p>
+        <p>Subtotal: ₹${subtotal}</p>
+        <p>Calculation: ${breakdown.join(" + ")}</p>
+        <h3 style="color:green">Final Bill: ₹${finalBill}</h3>
+      `;
+    }
+  </script>
+</body>
+</html>
