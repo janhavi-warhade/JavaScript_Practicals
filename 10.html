@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Records</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f7;
+      text-align: center;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      width: 60%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      background-color: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f0f8ff;
+    }
+  </style>
+</head>
+<body>
+  <h2>Student Records</h2>
+  <table id="studentTable">
+    <tr><th>Name</th><th>Age</th><th>Course</th></tr>
+  </table>
+
+  <script>
+    // Simulate API fetching using setTimeout()
+    function loadStudents() {
+      setTimeout(() => {
+        fetch('students.json')
+          .then(response => response.json())
+          .then(data => {
+            let table = document.getElementById("studentTable");
+            data.forEach(student => {
+              let row = `<tr>
+                          <td>${student.name}</td>
+                          <td>${student.age}</td>
+                          <td>${student.course}</td>
+                         </tr>`;
+              table.innerHTML += row;
+            });
+          })
+          .catch(error => console.log("Error loading data:", error));
+      }, 1000); // Simulated delay
+    }
+
+    window.onload = loadStudents;
+  </script>
+</body>
+</html>
