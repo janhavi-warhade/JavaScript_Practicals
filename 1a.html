@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><h1><b> STUDENT REGISTRATION FORM</b></h1></title>
+
+  <style>
+    /* General Page Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background: #004080;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Navigation Bar */
+nav {
+  background: #0066cc;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: #ffeb3b;
+}
+
+/* Main Content */
+main {
+  padding: 20px;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background: #eee;
+}
+
+/* Form Container */
+.container {
+  width: 80%;
+  max-width: 700px;
+  background: #fff;
+  padding: 30px;
+  margin: 30px auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2193b0;
+  letter-spacing: 1px;
+}
+
+/* Form Fields */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea,
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #2193b0;
+  box-shadow: 0 0 5px rgba(33, 147, 176, 0.5);
+}
+
+/* Inline Inputs */
+.inline-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.inline-inputs input {
+  flex: 1;
+}
+
+.dob-select {
+  width: 32%;
+  display: inline-block;
+}
+
+/* Radio & Checkbox */
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Button */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #f00000, #eb1010);
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  transform: scale(1.02);
+}
+
+  </style>
+</head>
+<header>
+    <h1>SIT Nagpur - Student Information</h1>
+  </header>
+
+  <nav>
+    <a href="1c.html">Home</a>
+    <a href="1b.html">Student Info</a>
+    <a href="1a.html">Student Registration</a>
+  </nav>
+
+<body>
+
+  <div class="container">
+    <h2>Student Registration Form</h2>
+    <form>
+
+      <div class="form-group">
+        <label>Student Name</label>
+        <div class="inline-inputs">
+          <input type="text" placeholder="First Name">
+          <input type="text" placeholder="Last Name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Father's Name</label>
+        <input type="text">
+      </div>
+
+      <div class="form-group">
+        <label>Roll Number</label>
+        <input type="text">
+      </div>
+
+      
+    <div class="form-group">
+  <label>Date of Birth</label>
+  <select class="dob-select" name="day">
+    <option>Day</option>
+
+    <option>1</option><option>2</option><option>3</option><option>4</option>
+    <option>5</option><option>6</option><option>7</option><option>8</option>
+    <option>9</option><option>10</option><option>11</option><option>12</option>
+    <option>13</option><option>14</option><option>15</option><option>16</option>
+    <option>17</option><option>18</option><option>19</option><option>20</option>
+    <option>21</option><option>22</option><option>23</option><option>24</option>
+    <option>25</option><option>26</option><option>27</option><option>28</option>
+    <option>29</option><option>30</option><option>31</option>
+  </select>
+
+  <select class="dob-select" name="month">
+    <option>Month</option>
+    <option>Jan</option><option>Feb</option><option>Mar</option>
+    <option>Apr</option><option>May</option><option>Jun</option>
+    <option>Jul</option><option>Aug</option><option>Sep</option>
+    <option>Oct</option><option>Nov</option><option>Dec</option>
+  </select>
+
+  <select class="dob-select" name="year">
+    <option>Year</option>
+    <option>1990</option><option>1991</option><option>1992</option><option>1993</option>
+    <option>1994</option><option>1995</option><option>1996</option><option>1997</option>
+    <option>1998</option><option>1999</option><option>2000</option><option>2001</option>
+    <option>2002</option><option>2003</option><option>2004</option><option>2005</option>
+    <option>2006</option><option>2007</option><option>2008</option><option>2009</option>
+    <option>2010</option><option>2011</option><option>2012</option><option>2013</option>
+    <option>2014</option><option>2015</option><option>2016</option><option>2017</option>
+    <option>2018</option><option>2019</option><option>2020</option><option>2021</option>
+    <option>2022</option><option>2023</option><option>2024</option><option>2025</option>
+  </select>
+</div>
+
+
+      <div class="form-group">
+  <label>Mobile No.</label>
+  <div style="display: flex; align-items: center;">
+    <span style="background:#eee; padding:10px; border:1px solid #ccc; border-radius:8px 0 0 8px;">+91</span>
+    <input type="tel" name="mobile" maxlength="10" pattern="[0-9]{10}" 
+           placeholder="mobile number"
+           style="flex:1; padding:10px; border:1px solid #ccc; border-left:none; border-radius:0 8px 8px 0;">
+  </div>
+</div>
+
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password">
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female
+      </div>
+
+      <div class="form-group">
+        <label>Department</label>
+        <input type="checkbox"> CSE
+        <input type="checkbox"> IT
+        <input type="checkbox"> ECE
+        <input type="checkbox"> Civil
+        <input type="checkbox"> Mech
+      </div>
+
+      <div class="form-group">
+        <label>Course</label>
+        <select>
+  <option>Select Course</option>
+  <option>B.Tech (CSE)</option>
+  <option>B.Tech (IT)</option>
+  <option>B.Tech (ECE)</option>
+  <option>B.Tech (Mechanical)</option>
+  <option>B.Tech (Civil)</option>
+  <option>MBA</option>
+  <option>BBA</option>
+  <option>BCA</option>
+  <option>MCA</option>
+  <option>B.Sc (Biotech)</option>
+  <option>BA (English)</option>
+  <option>Hotel Management</option>
+</select>
+
+
+      <div class="form-group">
+        <label>Student Photo</label>
+        <input type="file">
+      </div>
+
+      <div class="form-group">
+        <label>City</label>
+        <input type="text">
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <textarea></textarea>
+      </div>
+
+      <button type="submit" class="btn">Register</button>
+
+    </form>
+  </div>
+
+</body>
+</html>
